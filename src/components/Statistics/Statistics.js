@@ -1,32 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FriendsListItem from './StaticsItem';
-import './statistics.css';
 
-function Statistics({ title = 'Upload stats', stats }) {
+const Statistics = ({ good, neutral, bad, total, positiveFeedback }) => {
   return (
-    <section className="statistics">
-      {title && <h2 className="title">{title}</h2>}
-
-      <ul className="stat-list">
-        {stats.map(stat => (
-          <FriendsListItem stat={stat} key={stat.id} />
-        ))}
-      </ul>
-    </section>
+    <>
+      <p className="statistic-item ">Good: {good}</p>
+      <p className="statistic-item">Neutral: {neutral}</p>
+      <p className="statistic-item">Bad: {bad}</p>
+      <p className="statistic-item">Total: {total}</p>
+      <p className="statistic-item">Positive feedback: {positiveFeedback}%</p>
+    </>
   );
-}
+};
 
 Statistics.propTypes = {
-  title: PropTypes.string,
-  stats: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }),
-  ),
-};
-Statistics.defaultProps = {
-  title: '',
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positiveFeedback: PropTypes.number.isRequired,
 };
 
 export default Statistics;
